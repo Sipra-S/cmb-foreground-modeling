@@ -1,1 +1,213 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,physics}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{cite}
+
+\geometry{margin=1in}
+
+\title{\textbf{Modeling the Cosmic Microwave Background Spectrum}\\
+\large Blackbody Radiation and Astrophysical Foreground Contamination}
+\author{Sipra Subhadarsini Sahoo}
+\date{15.02.2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report presents a theoretical and numerical study of the Cosmic Microwave Background (CMB) spectral intensity and its contamination by dominant astrophysical foregrounds. We model the CMB as a near-perfect blackbody with temperature $T_{\mathrm{CMB}} = 2.725$ K using Planck's radiation law. Additionally, we incorporate galactic synchrotron emission and thermal dust emission to analyze frequency-dependent foreground dominance. The study highlights the importance of multi-frequency observations for accurate cosmological signal extraction.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+
+\section{Introduction}
+
+The Cosmic Microwave Background (CMB) is the relic radiation from the hot, dense early Universe. It was emitted during the epoch of recombination, approximately 380,000 years after the Big Bang, when the Universe cooled sufficiently for electrons and protons to combine into neutral hydrogen. This transition allowed photons to decouple from matter and propagate freely through space.
+
+Today, the CMB is observed as an almost perfectly isotropic radiation field with a blackbody spectrum corresponding to a temperature of
+
+\[
+T_{\mathrm{CMB}} = 2.725 \, \mathrm{K}.
+\]
+
+The remarkable precision with which this spectrum matches a theoretical blackbody curve provides compelling evidence for the hot Big Bang model. However, practical observations are not free from contamination. Galactic astrophysical processes emit radiation in overlapping frequency bands, making accurate modeling of foregrounds essential for extracting cosmological information.
+
+This report presents a theoretical and numerical study of the CMB spectral intensity along with dominant galactic foreground components.
+
+\section{Blackbody Radiation and Planck's Law}
+
+The CMB is modeled as a thermal radiation field in equilibrium. The spectral radiance of a blackbody is given by Planck’s law:
+
+\begin{equation}
+B_\nu(T) =
+\frac{2h\nu^3}{c^2}
+\frac{1}{e^{h\nu/kT} - 1}.
+\end{equation}
+
+This expression arises from quantization of electromagnetic modes in a cavity and the Bose–Einstein statistics obeyed by photons.
+
+\subsection{Physical Interpretation}
+
+The Planck distribution smoothly interpolates between two classical limits:
+
+\textbf{Rayleigh–Jeans Regime (low frequency):}
+
+\[
+B_\nu \approx \frac{2\nu^2 kT}{c^2}
+\]
+
+Here, intensity grows quadratically with frequency.
+
+\textbf{Wien Regime (high frequency):}
+
+\[
+B_\nu \propto \nu^3 e^{-h\nu/kT}
+\]
+
+In this regime, intensity decreases exponentially.
+
+The peak frequency is given approximately by Wien’s displacement law:
+
+\[
+\nu_{\text{peak}} \approx 2.82 \frac{kT}{h}.
+\]
+
+For $T = 2.725$ K, this corresponds to approximately 160 GHz.
+
+The precision of CMB spectral measurements confirms deviations from a perfect blackbody to less than one part in $10^5$.
+
+\section{Astrophysical Foregrounds}
+
+In realistic observations, the CMB signal is superimposed with radiation from astrophysical sources within the Milky Way. These foreground emissions must be carefully modeled and removed.
+
+Foreground components arise from different physical mechanisms and exhibit distinct spectral behavior.
+
+
+\subsection{Galactic Synchrotron Emission}
+
+Synchrotron radiation is produced when relativistic electrons spiral in galactic magnetic fields. The emitted radiation spans radio and microwave frequencies and follows a power-law spectrum:
+
+\begin{equation}
+I_\nu^{\mathrm{sync}} \propto \nu^{-\beta}.
+\end{equation}
+
+The spectral index $\beta$ depends on the energy distribution of cosmic ray electrons and typically lies in the range:
+
+\[
+\beta \approx 2.7 - 3.0.
+\]
+
+\subsubsection*{Physical Origin}
+
+The power-law behavior originates from a power-law distribution of electron energies:
+
+\[
+N(E) \propto E^{-p}.
+\]
+
+Synchrotron emission dominates at low frequencies (below $\sim 30$ GHz) and decreases rapidly with increasing frequency.
+
+\subsection{Thermal Dust Emission}
+
+Interstellar dust grains absorb ultraviolet and optical radiation from stars and re-radiate energy in the far-infrared and microwave regimes.
+
+Dust emission is modeled as a modified blackbody:
+
+\begin{equation}
+I_\nu^{\mathrm{dust}} \propto
+\nu^{\beta_d} B_\nu(T_{\mathrm{dust}}).
+\end{equation}
+
+Here:
+
+\[
+T_{\mathrm{dust}} \sim 18 - 25 \, \mathrm{K},
+\]
+\[
+\beta_d \sim 1.5 - 2.0.
+\]
+
+The additional power-law factor $\nu^{\beta_d}$ accounts for frequency-dependent emissivity of dust grains.
+
+Dust emission rises steeply at high frequencies and dominates above $\sim 200$ GHz.
+
+\section{Total Observed Spectrum}
+
+The total observed spectral intensity is modeled as:
+
+\begin{equation}
+I_\nu^{\mathrm{total}}
+=
+I_\nu^{\mathrm{CMB}}
++
+I_\nu^{\mathrm{sync}}
++
+I_\nu^{\mathrm{dust}}.
+\end{equation}
+
+Each component dominates in different frequency bands.
+
+\subsection{Frequency-Domain Behavior}
+
+\begin{itemize}
+\item Low frequencies ($<30$ GHz): Synchrotron dominated
+\item Intermediate band (70–150 GHz): CMB dominated
+\item High frequencies ($>200$ GHz): Dust dominated
+\end{itemize}
+
+This separation motivates multi-frequency observational strategies in experiments such as \textit{Planck}, \textit{WMAP}, and upcoming CMB missions.
+
+\section{Numerical Implementation}
+
+The numerical procedure consists of:
+
+\begin{enumerate}
+\item Defining a logarithmically spaced frequency grid from 1 GHz to 1000 GHz.
+\item Computing the CMB spectrum using Planck's law.
+\item Modeling synchrotron emission via a power-law with chosen spectral index.
+\item Modeling dust emission using a modified blackbody with specified $T_{\mathrm{dust}}$ and $\beta_d$.
+\item Summing all components and plotting on log–log axes.
+\end{enumerate}
+
+Logarithmic scaling is necessary because intensity varies over several orders of magnitude across the frequency range.
+
+The resulting spectrum clearly shows crossover regions where different physical processes dominate.
+
+\section{Scientific Interpretation}
+
+The modeling demonstrates how foreground contamination affects observational cosmology. While the CMB spectrum is intrinsically thermal, foreground emissions distort the observed signal.
+
+Component separation techniques exploit the distinct frequency scaling behaviors:
+
+\begin{itemize}
+\item Power-law decline of synchrotron radiation
+\item Exponential cutoff of the CMB at high frequency
+\item Rapid rise of dust emission
+\end{itemize}
+
+Understanding these spectral signatures is essential for precision cosmology, including:
+
+\begin{itemize}
+\item Estimation of cosmological parameters
+\item Detection of primordial gravitational waves
+\item Measurement of CMB polarization
+\end{itemize}
+
+\section{Conclusion}
+
+The Cosmic Microwave Background provides a nearly perfect blackbody snapshot of the early Universe. However, accurate cosmological inference requires careful modeling of galactic foregrounds.
+
+Through theoretical derivation and numerical simulation, we demonstrate how synchrotron and thermal dust emissions contaminate the CMB spectrum across different frequency bands. This study highlights the importance of multi-frequency observations and spectral modeling in modern observational cosmology.
+
+
+\end{document}
 
