@@ -1,0 +1,133 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+
+\title{\textbf{Results: CMB Spectrum with Astrophysical Foregrounds}}
+\author{Sipra Subhadarsini Sahoo}
+\date{16.02.2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+This section presents the numerical results obtained from modeling the Cosmic Microwave Background (CMB) spectrum along with dominant galactic foreground contributions.
+
+The simulation includes:
+
+\begin{itemize}
+\item CMB blackbody spectrum
+\item Galactic synchrotron emission
+\item Thermal dust emission
+\end{itemize}
+
+The resulting spectral radiance is plotted over the frequency range:
+
+\[
+1 \, \text{GHz} \leq \nu \leq 1000 \, \text{GHz}.
+\]
+
+\section{Model Parameters}
+
+The following idealized parameters were used:
+
+\subsection*{CMB}
+
+\[
+T_{\mathrm{CMB}} = 2.725 \, \text{K}
+\]
+
+Spectral radiance computed using Planck's law:
+
+\[
+B_\nu(T) =
+\frac{2h\nu^3}{c^2}
+\frac{1}{e^{h\nu/kT} - 1}
+\]
+
+\subsection*{Synchrotron Emission}
+
+Modeled as a power-law:
+
+\[
+I_\nu^{\mathrm{sync}} \propto \nu^{-\beta}
+\]
+
+with spectral index:
+
+\[
+\beta = 2.9
+\]
+
+\subsection*{Thermal Dust Emission}
+
+Modeled as a modified blackbody:
+
+\[
+I_\nu^{\mathrm{dust}} \propto \nu^{\beta_d} B_\nu(T_{\mathrm{dust}})
+\]
+
+Parameters used:
+
+\[
+T_{\mathrm{dust}} = 20 \, \text{K}
+\]
+\[
+\beta_d = 1.7
+\]
+
+\section{Units}
+
+Spectral radiance is expressed in:
+
+\[
+\text{W m}^{-2} \text{ Hz}^{-1} \text{ sr}^{-1}.
+\]
+
+Both axes are plotted on logarithmic scales to capture multiple orders of magnitude variation.
+
+\section{Physical Interpretation}
+
+The graph demonstrates three distinct regimes:
+
+\begin{enumerate}
+\item \textbf{Low Frequencies ($< 30$ GHz):}  
+Synchrotron emission dominates due to its power-law scaling.
+
+\item \textbf{Intermediate Frequencies (70--150 GHz):}  
+The CMB blackbody spectrum dominates and peaks near $\sim 160$ GHz, consistent with Wien’s law.
+
+\item \textbf{High Frequencies ($> 200$ GHz):}  
+Thermal dust emission increases and begins contributing significantly to the total signal.
+\end{enumerate}
+
+The total signal curve smoothly transitions between these regimes, reflecting the frequency-dependent dominance of different astrophysical processes.
+
+\section{Idealized Conditions}
+
+The simulation assumes:
+
+\begin{itemize}
+\item Perfect thermal equilibrium for the CMB
+\item No spectral distortions
+\item No anisotropies
+\item Uniform synchrotron spectral index
+\item Single-temperature dust model
+\item No instrumental noise
+\item No beam effects
+\end{itemize}
+
+Thus, the resulting spectrum represents a spatially averaged and theoretically ideal microwave sky.
+
+\section{Conclusion}
+
+The numerical simulation successfully reproduces the expected theoretical behavior of the CMB blackbody spectrum and demonstrates how astrophysical foregrounds dominate at low and high frequencies. The crossover regions highlight the necessity of multi-frequency observations for accurate cosmological signal extraction.
+
+\end{document}
